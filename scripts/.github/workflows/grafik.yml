@@ -1,0 +1,36 @@
+# Co 6 godzin pobiera aktualny grafik treningów Kacpra z systemu zapisów klubu
+# i zapisuje go w treningi.json. Strona czyta ten plik, więc aktualizuje się sama.
+name: Aktualizacja grafiku treningów
+
+on:
+  schedule:
+    - cron: '17 */6 * * *'   # co 6 godzin (czas UTC)
+  workflow_dispatch:          # przycisk "Run workflow" do ręcznego uruchomienia
+
+permissions:
+  contents: write
+
+jobs:
+  grafik:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Pobierz grafik
+        run: node scripts/pobierz-grafik.mjs
+
+      - name: Zapisz zmiany
+        run: |
+          if git diff --quiet -- treningi.json; then
+            echo "Brak zmian w grafiku."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add treningi.json
+            git commit -m "Aktualizacja grafiku treningów"
+            git push
+          fi
