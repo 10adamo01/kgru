@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Wymagane przez odtwarzacz YouTube (bez tego pojawia się "Błąd 153") -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <title>Kacper Gruszczyński | kgrusiak</title>
+    <meta name="description" content="Kacper Gruszczyński (kgrusiak) – kickboxing, MMA i trening. TikTok, Instagram, YouTube i kontakt w jednym miejscu.">
+
+    <!-- Open Graph (podgląd linku na Discordzie / Facebooku / Messengerze)
+         Po wrzuceniu strony zamień "https://twoja-domena.pl/" na prawdziwy adres w 4 miejscach. -->
+    <meta property="og:title" content="Kacper Gruszczyński | kgrusiak">
+    <meta property="og:description" content="Codziennie 0.5% lepszy. Kickboxing, MMA i trening – wszystkie moje sociale w jednym miejscu.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://twoja-domena.pl/">
+    <meta property="og:image" content="https://twoja-domena.pl/podglad.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="pl_PL">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://twoja-domena.pl/podglad.png">
+    <meta name="theme-color" content="#0b0b0c">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23e10600'/%3E%3Ctext x='50%25' y='57%25' dominant-baseline='middle' text-anchor='middle' font-family='Impact,Arial Black,Arial' font-size='36' fill='%23f4efe6'%3EKG%3C/text%3E%3C/svg%3E">
+
+    <!-- Czcionki: Anton (plakat gali) + Archivo (tekst) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Układ: plakat gali – wielkie nazwisko, czerwone pasy, "rekord" zawodnika jak na ważeniu */
+        :root {
+            --bg: #0b0b0c;
+            --surface: #141415;
+            --surface-2: #1c1c1e;
+            --line: #2b2b2e;
+            --text: #f4efe6;      /* ciepła biel jak papier plakatu */
+            --muted: #a8a29a;
+            --dim: #6d6862;
+            --red: #e10600;
+            --red-dark: #8f0400;
+            --gold: #e6b84a;
+            --bronze: #c98a4b;
+
+            --font-display: 'Anton', Impact, 'Arial Narrow', sans-serif;
+            --font-body: 'Archivo', system-ui, sans-serif;
+
+            --tiktok: #25f4ee;
+            --instagram: #e1306c;
+            --youtube: #ff0033;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent;
+        }
+        a { color: inherit; text-decoration: none; }
+        button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+        img { display: block; max-width: 100%; }
+        [hidden] { display: none !important; }
+        :focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+        .ic { display: inline-block; width: 1.15em; height: 1em; fill: currentColor; flex-shrink: 0; vertical-align: -0.125em; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: #333; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--red); }
+
+        /* ---------- tło: ziarno + czerwone światło ringu ---------- */
+        .bg-light {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background:
+                radial-gradient(ellipse 55% 45% at 85% -10%, rgba(225, 6, 0, 0.28), transparent 70%),
+                radial-gradient(ellipse 40% 35% at 0% 100%, rgba(225, 6, 0, 0.10), transparent 70%);
+        }
+        .bg-grain {
+            position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.07;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            mix-blend-mode: overlay;
+        }
+
+        main {
+            position: relative; z-index: 2;
+            width: 100%; max-width: 1120px;
+            margin: 0 auto;
+            padding: 28px 20px 40px;
+        }
+        section { margin-top: 64px; }
+
+        /* Nagłówek sekcji: czerwona "taśma" z napisem */
+        .section-head { display: flex; align-items: center; gap: 16px; margin-bottom: 22px; }
+        .section-head h2 {
+            margin: 0;
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(34px, 5vw, 48px);
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.01em;
+        }
+        .section-head .tape {
+            padding: 5px 10px 4px;
+            background: var(--red);
+            font-size: 11px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase;
+            transform: skewX(-12deg);
+        }
+        .section-head .tape span { display: inline-block; transform: skewX(12deg); }
+        .section-head .rule { flex: 1; height: 2px; background: linear-gradient(90deg, var(--line), transparent); }
+
+        /* ---------- przyciski ---------- */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 13px 22px;
+            font-weight: 800; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase;
+            transition: background-color 0.2s, color 0.2s, transform 0.2s;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-red { background: var(--red); color: #fff; }
+        .btn-red:hover { background: #ff1a12; }
+        .btn-ghost { background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); }
+        .btn-ghost:hover { background: #262628; }
+
+        /* =========================================================
+           HERO – plakat
+           ========================================================= */
+        .topbar { display: flex; justify-content: space-between; align-items: center; }
+        .handle {
+            font-weight: 800; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
+        }
+        .handle b { color: var(--red); }
+        .share-btn {
+            width: 44px; height: 44px; display: grid; place-items: center;
+            background: var(--surface); box-shadow: inset 0 0 0 1px var(--line);
+            color: var(--muted); transition: color 0.2s, background-color 0.2s;
+        }
+        .share-btn:hover { color: #fff; background: var(--surface-2); }
+
+        .hero {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            gap: 40px;
+            align-items: center;
+            margin-top: 36px;
+        }
+        .photo {
+            position: relative;
+            width: 230px; aspect-ratio: 4 / 5;
+        }
+        .photo::before { /* czerwony blok za zdjęciem */
+            content: ''; position: absolute; inset: 14px -14px -14px 14px;
+            background: repeating-linear-gradient(-45deg, var(--red) 0 10px, var(--red-dark) 10px 20px);
+        }
+        .photo-frame {
+            position: relative; width: 100%; height: 100%;
+            background: var(--surface-2);
+            overflow: hidden;
+        }
+        .photo-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.15) contrast(1.05); }
+        .photo-initials {
+            position: absolute; inset: 0;
+            display: grid; place-items: center;
+            font-family: var(--font-display); font-size: 110px; color: var(--text);
+            background: linear-gradient(160deg, #222 0%, #111 100%);
+        }
+
+        .kicker {
+            display: inline-block;
+            margin: 0 0 14px;
+            padding: 6px 12px 5px;
+            background: var(--text); color: var(--bg);
+            font-weight: 900; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+        }
+        .name {
+            margin: 0;
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(56px, 10vw, 118px);
+            line-height: 0.88;
+            text-transform: uppercase;
+            letter-spacing: 0.005em;
+            text-wrap: balance;
+        }
+        .name .red { color: var(--red); }
+        .motto {
+            margin: 18px 0 0;
+            display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px;
+            font-weight: 700; font-size: 17px;
+        }
+        .motto q { quotes: '„' '”'; font-style: italic; }
+        .motto small { font-size: 13px; font-weight: 600; color: var(--muted); }
+        .motto small b { color: var(--text); font-variant-numeric: tabular-nums; }
+
+        .stats {
+            margin-top: 26px;
+            display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+            border-top: 2px solid var(--text);
+        }
+        .stat { padding: 14px 16px 0 0; }
+        .stat + .stat { padding-left: 16px; border-left: 1px solid var(--line); }
+        .stat-num {
+            font-family: var(--font-display); font-size: clamp(32px, 4.5vw, 46px); line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+        .stat-label { margin-top: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+        /* =========================================================
+           LINKI
+           ========================================================= */
+        .links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .link {
+            position: relative;
+            display: flex; align-items: center; gap: 18px;
+            padding: 20px 22px;
+            background: var(--surface);
+            box-shadow: inset 0 0 0 1px var(--line);
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+        }
+        .link::before { /* pasek w kolorze platformy */
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+            background: var(--brand);
+            transform: scaleY(0.4); transition: transform 0.3s ease;
+        }
+        .link:hover { transform: translateY(-3px); background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--brand); }
+        .link:hover::before { transform: scaleY(1); }
+        .link-icon {
+            flex-shrink: 0; width: 52px; height: 52px; display: grid; place-items: center;
+            background: var(--text); color: var(--bg); font-size: 24px;
+            transition: background-color 0.25s, color 0.25s;
+        }
+        .link:hover .link-icon { background: var(--brand); color: var(--brand-ink, #fff); }
+        .link-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+        .link-name { font-family: var(--font-display); font-size: 26px; line-height: 1; text-transform: uppercase; }
+        .link-desc { margin-top: 6px; font-size: 13px; font-weight: 500; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .link-count {
+            font-family: var(--font-display); font-size: 30px; line-height: 1; text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+        .link-count small { display: block; margin-top: 3px; font-family: var(--font-body); font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
+        .link-arrow { color: var(--dim); transition: transform 0.25s, color 0.25s; }
+        .link:hover .link-arrow { color: #fff; transform: translateX(4px); }
+        /* TikTok to główna platforma – szerszy kafelek */
+        .link.is-main { grid-column: 1 / -1; padding: 26px 26px; }
+        .link.is-main .link-name { font-size: 34px; }
+        .link.is-main .link-count { font-size: 44px; }
+
+        /* =========================================================
+           TRENINGI
+           ========================================================= */
+        .train { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.3fr); gap: 14px; align-items: stretch; }
+        .train-next {
+            display: flex; flex-direction: column; gap: 6px;
+            padding: 26px;
+            background: var(--text); color: var(--bg);
+        }
+        .train-label { margin: 0 0 4px; font-size: 12px; font-weight: 900; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red-dark); }
+        .next-when { font-family: var(--font-display); font-size: clamp(40px, 6vw, 60px); line-height: 0.95; text-transform: uppercase; }
+        .next-when .skeleton { background: linear-gradient(90deg, #ddd6ca 25%, #ece6dc 50%, #ddd6ca 75%); background-size: 200% 100%; }
+        .next-name { margin: 6px 0 0; font-weight: 900; font-size: 18px; text-transform: uppercase; letter-spacing: 0.04em; }
+        .next-meta { margin: 0; font-size: 14px; font-weight: 600; color: #57524c; }
+        .train-actions { margin-top: auto; padding-top: 18px; }
+        .personal-note { margin: 12px 0 0; font-size: 13px; font-weight: 600; color: #57524c; }
+
+        .week { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+        .day {
+            display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 14px; align-items: center;
+            padding: 12px 16px;
+            background: var(--surface); box-shadow: inset 0 0 0 1px var(--line);
+        }
+        .day.is-today { box-shadow: inset 4px 0 0 var(--red), inset 0 0 0 1px var(--line); }
+        .day-name { font-family: var(--font-display); font-size: 22px; line-height: 1; text-transform: uppercase; }
+        .day-date { margin-top: 3px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--dim); text-transform: uppercase; }
+        .day.is-today .day-date { color: var(--red); }
+        .day-classes { display: flex; flex-wrap: wrap; gap: 6px; }
+        .slot {
+            display: inline-flex; align-items: baseline; gap: 8px;
+            padding: 7px 10px;
+            background: var(--surface-2);
+            font-size: 13px; font-weight: 700;
+        }
+        .slot time { font-variant-numeric: tabular-nums; color: var(--text); }
+        .slot span { color: var(--muted); font-weight: 600; }
+        .slot.is-cancelled { opacity: 0.55; text-decoration: line-through; }
+        .slot.is-next { background: var(--red); }
+        .slot.is-next span { color: #ffd9d6; }
+        .day-empty { font-size: 13px; font-weight: 600; color: var(--dim); }
+        .train-foot { margin: 12px 0 0; font-size: 12px; font-weight: 500; color: var(--dim); }
+
+        /* =========================================================
+           REKORD ZAWODNIKA
+           ========================================================= */
+        .record {
+            display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 28px;
+            align-items: stretch;
+        }
+        .tape-card {
+            position: relative;
+            padding: 26px;
+            background: var(--text); color: var(--bg);
+        }
+        .tape-card h3 {
+            margin: 0 0 16px;
+            font-family: var(--font-display); font-weight: 400; font-size: 30px; line-height: 1; text-transform: uppercase;
+        }
+        .tape-row {
+            display: flex; justify-content: space-between; gap: 12px;
+            padding: 10px 0;
+            border-top: 1px solid rgba(11, 11, 12, 0.18);
+            font-size: 14px;
+        }
+        .tape-row dt { font-weight: 600; color: #57524c; }
+        .tape-row dd { margin: 0; font-weight: 800; text-align: right; }
+        .tape-card .club { color: var(--red-dark); }
+
+        .medals { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+        .medal {
+            display: flex; align-items: center; gap: 18px;
+            padding: 18px 20px;
+            background: var(--surface); box-shadow: inset 0 0 0 1px var(--line);
+        }
+        .medal-disc {
+            flex-shrink: 0; position: relative;
+            width: 52px; height: 52px; border-radius: 50%;
+            display: grid; place-items: center;
+            font-family: var(--font-display); font-size: 22px; color: #1a1206;
+            box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.25), 0 0 0 3px rgba(255, 255, 255, 0.06);
+        }
+        .medal-disc.gold { background: radial-gradient(circle at 35% 30%, #fff1b8, var(--gold) 55%, #a87b17); }
+        .medal-disc.bronze { background: radial-gradient(circle at 35% 30%, #f5c99a, var(--bronze) 55%, #7a4b20); }
+        .medal-name { font-family: var(--font-display); font-size: 24px; line-height: 1.05; text-transform: uppercase; }
+        .medal-place { margin-top: 4px; font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+        .medal-place.gold { color: var(--gold); }
+        .medal-place.bronze { color: var(--bronze); }
+
+        /* =========================================================
+           NAJNOWSZE
+           ========================================================= */
+        .tabs { display: flex; gap: 4px; margin-bottom: 18px; overflow-x: auto; max-width: 100%; }
+        .tab-btn {
+            display: flex; align-items: center; gap: 8px;
+            padding: 11px 18px;
+            font-weight: 800; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--muted); background: var(--surface); box-shadow: inset 0 0 0 1px var(--line);
+            white-space: nowrap;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .tab-btn:hover { color: #fff; }
+        .tab-btn[aria-selected="true"] { background: var(--red); color: #fff; box-shadow: none; }
+
+        .media-grid { display: grid; gap: 14px; }
+        .media-grid.shorts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .media-grid.videos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+        .media-card {
+            display: block; width: 100%; text-align: left;
+            background: var(--surface); box-shadow: inset 0 0 0 1px var(--line);
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .media-card:hover { transform: translateY(-4px); box-shadow: inset 0 0 0 1px var(--red); }
+        .media-thumb { position: relative; display: block; overflow: hidden; background: #000; }
+        .media-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .media-card:hover .media-thumb img { transform: scale(1.06); }
+        .aspect-video { aspect-ratio: 16 / 9; }
+        .aspect-short { aspect-ratio: 9 / 16; }
+        .play-icon {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.85);
+            width: 54px; height: 54px; display: grid; place-items: center;
+            background: var(--red); color: #fff; font-size: 18px;
+            opacity: 0; transition: opacity 0.25s, transform 0.25s;
+        }
+        .media-card:hover .play-icon, .media-card:focus-visible .play-icon { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        .new-badge {
+            position: absolute; top: 10px; left: 10px; padding: 4px 8px 3px;
+            background: var(--red); color: #fff; font-size: 11px; font-weight: 900; letter-spacing: 0.14em;
+        }
+        .media-body { display: block; padding: 14px 16px 16px; }
+        .media-title {
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+            font-weight: 700; font-size: 15px; line-height: 1.35;
+        }
+        .media-date { display: block; margin-top: 6px; font-size: 12px; font-weight: 600; color: var(--dim); }
+        .short-overlay {
+            position: absolute; left: 0; right: 0; bottom: 0; display: block;
+            padding: 44px 12px 12px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.92), transparent);
+        }
+        .short-overlay .media-title { font-size: 13px; }
+        .short-overlay .media-date { color: #b5aea5; margin-top: 4px; }
+
+        .panel-msg {
+            grid-column: 1 / -1;
+            display: flex; flex-direction: column; align-items: center; gap: 12px;
+            padding: 36px 20px; text-align: center;
+            background: var(--surface); box-shadow: inset 0 0 0 1px var(--line);
+        }
+        .panel-msg .ic { font-size: 28px; color: var(--dim); }
+        .panel-msg p { margin: 0; font-size: 14px; font-weight: 600; color: var(--muted); }
+
+        .skeleton {
+            background: linear-gradient(90deg, #18181a 25%, #232326 50%, #18181a 75%);
+            background-size: 200% 100%;
+            animation: skeleton 1.4s ease-in-out infinite;
+        }
+        @keyframes skeleton { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .sk-line { height: 13px; margin-top: 8px; }
+
+        .tiktok-box { display: flex; justify-content: center; padding: 16px; min-height: 320px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
+        .more-link { display: flex; justify-content: center; margin-top: 22px; }
+
+        /* =========================================================
+           KONTAKT
+           ========================================================= */
+        .contact {
+            position: relative;
+            display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: center;
+            padding: 34px;
+            background: var(--red);
+            overflow: hidden;
+        }
+        .contact::after { /* ukośne pasy jak na banerze gali */
+            content: ''; position: absolute; right: -40px; top: 0; bottom: 0; width: 260px;
+            background: repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.18) 0 14px, transparent 14px 28px);
+            pointer-events: none;
+        }
+        .contact > * { position: relative; z-index: 1; }
+        .contact h2 {
+            margin: 0;
+            font-family: var(--font-display); font-weight: 400; font-size: clamp(34px, 5vw, 52px); line-height: 0.95; text-transform: uppercase;
+        }
+        .contact p { margin: 10px 0 0; font-weight: 600; font-size: 15px; max-width: 52ch; }
+        .contact-email {
+            display: block; margin-top: 16px;
+            font-family: var(--font-display); font-size: clamp(22px, 3.2vw, 34px); line-height: 1.1;
+            overflow-wrap: anywhere; user-select: all;
+        }
+        .contact-mgmt { margin-top: 8px; font-size: 13px; font-weight: 700; }
+        .contact-mgmt a { text-decoration: underline; text-underline-offset: 3px; }
+        .contact-actions { display: flex; flex-direction: column; gap: 10px; }
+        .contact .btn-dark { background: var(--bg); color: #fff; }
+        .contact .btn-dark:hover { background: #000; }
+        .contact .btn-light { background: var(--text); color: var(--bg); }
+        .contact .btn-light:hover { background: #fff; }
+
+        footer {
+            position: relative; z-index: 2;
+            margin-top: 56px; padding: 22px 20px 34px;
+            border-top: 1px solid var(--line);
+            text-align: center; font-size: 12px; font-weight: 500; color: var(--dim);
+        }
+
+        /* ---------- toast i okno odtwarzacza ---------- */
+        .toast {
+            position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); z-index: 99990;
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 22px;
+            background: #1c1c1e; border-left: 3px solid var(--red);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            font-size: 14px; font-weight: 700; white-space: nowrap; pointer-events: none;
+            transition: bottom 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .toast.show { bottom: 36px; }
+
+        .modal {
+            position: fixed; inset: 0; z-index: 9000;
+            display: flex; align-items: center; justify-content: center; padding: 16px;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s;
+        }
+        .modal.show { opacity: 1; pointer-events: auto; }
+        .modal-backdrop { position: absolute; inset: 0; background: rgba(5, 5, 6, 0.9); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+        .modal-body { position: relative; display: flex; flex-direction: column; align-items: center; gap: 14px; transform: scale(0.96); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .modal.show .modal-body { transform: scale(1); }
+        .modal-frame { width: min(960px, 92vw); aspect-ratio: 16 / 9; background: #000; box-shadow: 0 0 0 2px var(--red), 0 20px 80px rgba(0, 0, 0, 0.7); }
+        .modal-frame.is-short { width: min(400px, 88vw, calc(78vh * 9 / 16)); aspect-ratio: 9 / 16; }
+        .modal-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+        .modal-close {
+            position: absolute; top: -16px; right: -16px; z-index: 2;
+            width: 42px; height: 42px; display: grid; place-items: center;
+            background: var(--red); color: #fff; transition: background-color 0.2s;
+        }
+        .modal-close:hover { background: #ff1a12; }
+        .modal-link { font-size: 13px; font-weight: 700; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+        .modal-link:hover { color: #fff; }
+
+        /* ---------- wejście ---------- */
+        .reveal { animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        @keyframes reveal { from { opacity: 0; transform: translateY(22px); } }
+        .d1 { animation-delay: 0.08s; } .d2 { animation-delay: 0.16s; } .d3 { animation-delay: 0.24s; }
+
+        /* ---------- responsywność ---------- */
+        @media (max-width: 900px) {
+            .media-grid.shorts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .record { grid-template-columns: 1fr; }
+            .train { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 760px) {
+            .hero { grid-template-columns: 1fr; gap: 34px; justify-items: start; }
+            .photo { width: 190px; }
+            .links { grid-template-columns: 1fr; }
+            .media-grid.videos { grid-template-columns: 1fr; }
+            .contact { grid-template-columns: 1fr; padding: 26px 22px; }
+            .contact-actions { flex-direction: row; flex-wrap: wrap; }
+        }
+        @media (max-width: 480px) {
+            main { padding: 20px 16px 32px; }
+            section { margin-top: 52px; }
+            .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .stat { padding-right: 8px; }
+            .stat + .stat { padding-left: 10px; }
+            .stat-label { font-size: 10px; letter-spacing: 0.06em; }
+            .media-grid.shorts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+            .link { padding: 16px; gap: 14px; }
+            .day { grid-template-columns: 1fr; gap: 8px; }
+            .link-count { font-size: 24px; }
+            .link.is-main { padding: 20px 18px; }
+            .link.is-main .link-name { font-size: 28px; }
+            .link.is-main .link-count { font-size: 32px; }
+            .modal-close { top: -54px; right: 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important; scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ikony: Font Awesome Free 6.4.0 (https://fontawesome.com), licencja CC BY 4.0 -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <defs>
+            <symbol id="i-arrow-right" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></symbol>
+            <symbol id="i-bolt" viewBox="0 0 448 512"><path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288H175.5L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7H272.5L349.4 44.6z"/></symbol>
+            <symbol id="i-circle-check" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></symbol>
+            <symbol id="i-circle-xmark" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/></symbol>
+            <symbol id="i-envelope" viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></symbol>
+            <symbol id="i-film" viewBox="0 0 512 512"><path d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM48 368v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H416zM48 240v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H416zM48 112v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zM416 96c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H416zM160 128v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V128c0-17.7-14.3-32-32-32H192c-17.7 0-32 14.3-32 32zm32 160c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V320c0-17.7-14.3-32-32-32H192z"/></symbol>
+            <symbol id="i-instagram" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></symbol>
+            <symbol id="i-play" viewBox="0 0 384 512"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></symbol>
+            <symbol id="i-share-nodes" viewBox="0 0 448 512"><path d="M352 224c53 0 96-43 96-96s-43-96-96-96s-96 43-96 96c0 4 .2 8 .7 11.9l-94.1 47C145.4 170.2 121.9 160 96 160c-53 0-96 43-96 96s43 96 96 96c25.9 0 49.4-10.2 66.6-26.9l94.1 47c-.5 3.9-.7 7.8-.7 11.9c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-25.9 0-49.4 10.2-66.6 26.9l-94.1-47c.5-3.9 .7-7.8 .7-11.9s-.2-8-.7-11.9l94.1-47C302.6 213.8 326.1 224 352 224z"/></symbol>
+            <symbol id="i-tiktok" viewBox="0 0 448 512"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></symbol>
+            <symbol id="i-wifi" viewBox="0 0 640 512"><path d="M54.2 202.9C123.2 136.7 216.8 96 320 96s196.8 40.7 265.8 106.9c12.8 12.2 33 11.8 45.2-.9s11.8-33-.9-45.2C549.7 79.5 440.4 32 320 32S90.3 79.5 9.8 156.7C-2.9 169-3.3 189.2 8.9 202s32.5 13.2 45.2 .9zM320 256c56.8 0 108.6 21.1 148.2 56c13.3 11.7 33.5 10.4 45.2-2.8s10.4-33.5-2.8-45.2C459.8 219.2 393 192 320 192s-139.8 27.2-190.5 72c-13.3 11.7-14.5 31.9-2.8 45.2s31.9 14.5 45.2 2.8c39.5-34.9 91.3-56 148.2-56zm64 160a64 64 0 1 0 -128 0 64 64 0 1 0 128 0z"/></symbol>
+            <symbol id="i-xmark" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></symbol>
+            <symbol id="i-youtube" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></symbol>
+        </defs>
+    </svg>
+
+    <div class="bg-light" aria-hidden="true"></div>
+    <div class="bg-grain" aria-hidden="true"></div>
+
+    <main>
+
+        <!-- ===================== HERO ===================== -->
+        <div class="topbar reveal">
+            <span class="handle"><b>@</b>kgrusiak</span>
+            <button id="share-btn" type="button" class="share-btn" aria-label="Udostępnij stronę">
+                <svg class="ic" aria-hidden="true"><use href="#i-share-nodes"/></svg>
+            </button>
+        </div>
+
+        <header class="hero">
+            <div class="photo reveal d1">
+                <div class="photo-frame">
+                    <!-- ZDJĘCIE: wrzuć plik "zdjecie.jpg" obok index.html (najlepiej pionowe 4:5).
+                         Dopóki go nie ma, wyświetlają się inicjały. -->
+                    <div class="photo-initials" aria-hidden="true">KG</div>
+                    <img id="photo" src="zdjecie.jpg" alt="Kacper Gruszczyński" width="230" height="288"
+                         onerror="this.remove()">
+                </div>
+            </div>
+
+            <div class="hero-text reveal d2">
+                <p class="kicker">Muay Thai · Kickboxing · Trener</p>
+                <h1 class="name">Kacper<br><span class="red">Gruszczyński</span></h1>
+                <p class="motto">
+                    <q>Codziennie 0.5% lepszy</q>
+                    <small>po roku to <b>×6,17</b> (1,005<sup>365</sup>)</small>
+                </p>
+
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-num">20 tys.</div>
+                        <div class="stat-label">TikTok</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-num">2,2 mln</div>
+                        <div class="stat-label">Polubień</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-num">12,2 tys.</div>
+                        <div class="stat-label">Instagram</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ===================== LINKI ===================== -->
+        <section aria-labelledby="links-title" class="reveal d3">
+            <div class="section-head">
+                <h2 id="links-title">Sociale</h2>
+                <div class="rule"></div>
+            </div>
+
+            <nav class="links" aria-label="Media społecznościowe">
+                <a class="link is-main" style="--brand: var(--tiktok); --brand-ink: #0b0b0c;" href="https://www.tiktok.com/@kgrusiak" target="_blank" rel="noopener noreferrer">
+                    <span class="link-icon"><svg class="ic" aria-hidden="true"><use href="#i-tiktok"/></svg></span>
+                    <span class="link-text">
+                        <span class="link-name">TikTok</span>
+                        <span class="link-desc">Trening, walki i życie na co dzień</span>
+                    </span>
+                    <span class="link-count">20 tys.<small>obserwujących</small></span>
+                    <svg class="ic link-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                </a>
+
+                <a class="link" style="--brand: var(--instagram);" href="https://www.instagram.com/kgrusiak/" target="_blank" rel="noopener noreferrer">
+                    <span class="link-icon"><svg class="ic" aria-hidden="true"><use href="#i-instagram"/></svg></span>
+                    <span class="link-text">
+                        <span class="link-name">Instagram</span>
+                        <span class="link-desc">Kickboxing, MMA, X-punch, przepisy</span>
+                    </span>
+                    <span class="link-count">12,2 tys.<small>obserwujących</small></span>
+                </a>
+
+                <a class="link" style="--brand: var(--youtube);" href="https://www.youtube.com/@kgrusiak" target="_blank" rel="noopener noreferrer">
+                    <span class="link-icon"><svg class="ic" aria-hidden="true"><use href="#i-youtube"/></svg></span>
+                    <span class="link-text">
+                        <span class="link-name">YouTube</span>
+                        <span class="link-desc">Shorty: trening i przekraczanie granic</span>
+                    </span>
+                    <svg class="ic link-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                </a>
+
+                <a class="link" style="--brand: var(--youtube);" href="https://www.youtube.com/@Mikroura%C5%BCeni" target="_blank" rel="noopener noreferrer">
+                    <span class="link-icon"><svg class="ic" aria-hidden="true"><use href="#i-film"/></svg></span>
+                    <span class="link-text">
+                        <span class="link-name">Mikrourażeni</span>
+                        <span class="link-desc">Kanał o kontuzjach i ludzkich granicach</span>
+                    </span>
+                    <svg class="ic link-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                </a>
+
+                <a class="link" style="--brand: var(--red);" href="https://www.instagram.com/champion_fight_club/" target="_blank" rel="noopener noreferrer">
+                    <span class="link-icon"><svg class="ic" aria-hidden="true"><use href="#i-bolt"/></svg></span>
+                    <span class="link-text">
+                        <span class="link-name">Trenuj ze mną</span>
+                        <span class="link-desc">Trener Muay Thai w Fight Club Champion</span>
+                    </span>
+                    <svg class="ic link-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                </a>
+            </nav>
+        </section>
+
+        <!-- ===================== TRENINGI ===================== -->
+        <section id="treningi" aria-labelledby="train-title">
+            <div class="section-head">
+                <h2 id="train-title">Treningi</h2>
+                <span class="tape"><span>Fight Club Champion · Wrocław</span></span>
+                <div class="rule"></div>
+            </div>
+
+            <div class="train">
+                <div class="train-next">
+                    <p class="train-label">Najbliższy trening</p>
+                    <div id="next-when" class="next-when"><span class="skeleton" style="display:block;height:48px;width:70%"></span></div>
+                    <p id="next-name" class="next-name"></p>
+                    <p id="next-meta" class="next-meta"></p>
+                    <div class="train-actions">
+                        <a id="signup-btn" class="btn btn-red" href="https://wod.guru/pierwsze-zajecia/fightclubchampion" target="_blank" rel="noopener noreferrer">
+                            Zapisz się na zajęcia <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                        </a>
+                    </div>
+                    <p id="personal-note" class="personal-note" hidden>Treningi personalne: codziennie 7:00–22:00, po wcześniejszym umówieniu.</p>
+                </div>
+
+                <ol id="week" class="week" aria-label="Grafik na najbliższe dni"></ol>
+            </div>
+            <p id="train-foot" class="train-foot">Grafik pobierany automatycznie z systemu zapisów klubu.</p>
+        </section>
+
+        <!-- ===================== REKORD ===================== -->
+        <section aria-labelledby="record-title">
+            <div class="section-head">
+                <h2 id="record-title">Rekord</h2>
+                <span class="tape"><span>Osiągnięcia</span></span>
+                <div class="rule"></div>
+            </div>
+
+            <div class="record">
+                <div class="tape-card">
+                    <h3>Karta zawodnika</h3>
+                    <dl style="margin:0">
+                    <div class="tape-row"><dt>Zawodnik</dt><dd>Kacper Gruszczyński</dd></div>
+                    <div class="tape-row"><dt>Pseudonim</dt><dd>kgrusiak</dd></div>
+                    <div class="tape-row"><dt>Dyscypliny</dt><dd>Kickboxing, MMA</dd></div>
+                    <div class="tape-row"><dt>Klub</dt><dd class="club">Fight Club Champion, Wrocław</dd></div>
+                    <div class="tape-row"><dt>Trener</dt><dd>Muay Thai</dd></div>
+                    <div class="tape-row"><dt>Medale</dt><dd>1× złoto · 2× brąz</dd></div>
+                    </dl>
+                </div>
+
+                <ul class="medals">
+                    <li class="medal">
+                        <span class="medal-disc gold" aria-hidden="true">1</span>
+                        <div>
+                            <div class="medal-name">ALMMA PPŻW</div>
+                            <div class="medal-place gold">Złoto · 1. miejsce</div>
+                        </div>
+                    </li>
+                    <li class="medal">
+                        <span class="medal-disc bronze" aria-hidden="true">3</span>
+                        <div>
+                            <div class="medal-name">WAKO European Cup</div>
+                            <div class="medal-place bronze">Brąz · 3. miejsce</div>
+                        </div>
+                    </li>
+                    <li class="medal">
+                        <span class="medal-disc bronze" aria-hidden="true">3</span>
+                        <div>
+                            <div class="medal-name">PZKB DFN</div>
+                            <div class="medal-place bronze">Brąz · 3. miejsce</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===================== NAJNOWSZE ===================== -->
+        <section id="latest" aria-labelledby="latest-title">
+            <div class="section-head">
+                <h2 id="latest-title">Najnowsze</h2>
+                <div class="rule"></div>
+            </div>
+
+            <div role="tablist" aria-label="Rodzaj materiałów" class="tabs">
+                <button type="button" role="tab" id="tab-shorts" class="tab-btn" data-tab="shorts" aria-selected="true" aria-controls="panel-shorts">
+                    <svg class="ic" aria-hidden="true"><use href="#i-youtube"/></svg> Shorty
+                </button>
+                <button type="button" role="tab" id="tab-mikro" class="tab-btn" data-tab="mikro" aria-selected="false" aria-controls="panel-mikro" tabindex="-1">
+                    <svg class="ic" aria-hidden="true"><use href="#i-film"/></svg> Mikrourażeni
+                </button>
+                <button type="button" role="tab" id="tab-tiktok" class="tab-btn" data-tab="tiktok" aria-selected="false" aria-controls="panel-tiktok" tabindex="-1">
+                    <svg class="ic" aria-hidden="true"><use href="#i-tiktok"/></svg> TikTok
+                </button>
+            </div>
+
+            <div id="panel-shorts" role="tabpanel" aria-labelledby="tab-shorts">
+                <div id="grid-shorts" class="media-grid shorts" aria-live="polite"></div>
+            </div>
+            <div id="panel-mikro" role="tabpanel" aria-labelledby="tab-mikro" hidden>
+                <div id="grid-mikro" class="media-grid videos" aria-live="polite"></div>
+            </div>
+            <div id="panel-tiktok" role="tabpanel" aria-labelledby="tab-tiktok" hidden>
+                <div id="tiktok-embed-wrap" class="tiktok-box"></div>
+            </div>
+
+            <div class="more-link">
+                <a id="latest-more" class="btn btn-ghost" href="https://www.youtube.com/@kgrusiak/shorts" target="_blank" rel="noopener noreferrer">
+                    <span id="latest-more-text">Wszystkie shorty na YouTube</span>
+                    <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- ===================== KONTAKT ===================== -->
+        <section aria-labelledby="contact-title">
+            <div class="contact">
+                <div>
+                    <h2 id="contact-title">Współpraca</h2>
+                    <p>Reklamy, współprace z markami i sprawy biznesowe – napisz maila.</p>
+                    <!-- Adres składany w skrypcie, żeby boty zbierające maile go nie wyłapały -->
+                    <span id="contact-email" class="contact-email" data-user="kgrusiakbiznesowe" data-domain="gmail.com">kgrusiakbiznesowe [at] gmail.com</span>
+                    <p class="contact-mgmt">Management: <a href="https://www.instagram.com/strjc_managment/" target="_blank" rel="noopener noreferrer">@strjc_managment</a></p>
+                </div>
+                <div class="contact-actions">
+                    <a id="contact-mail" class="btn btn-dark" href="#">
+                        <svg class="ic" aria-hidden="true"><use href="#i-envelope"/></svg> Napisz maila
+                    </a>
+                    <button id="contact-copy" type="button" class="btn btn-light">Kopiuj adres</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>&copy; <span id="year">2026</span> Kacper Gruszczyński · kgrusiak</footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite">
+        <svg id="toast-icon" class="ic" style="color: var(--red);" aria-hidden="true"><use href="#i-circle-check"/></svg>
+        <span id="toast-text"></span>
+    </div>
+
+    <div id="video-modal" class="modal" role="dialog" aria-modal="true" aria-label="Odtwarzacz wideo" aria-hidden="true">
+        <div class="modal-backdrop" data-close></div>
+        <div class="modal-body">
+            <button type="button" class="modal-close" data-close aria-label="Zamknij odtwarzacz">
+                <svg class="ic" aria-hidden="true"><use href="#i-xmark"/></svg>
+            </button>
+            <div id="modal-frame" class="modal-frame"></div>
+            <a id="modal-yt-link" class="modal-link" href="#" target="_blank" rel="noopener noreferrer">
+                <svg class="ic" style="color: var(--youtube);" aria-hidden="true"><use href="#i-youtube"/></svg> Otwórz na YouTube
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // =====================================================================
+        // USTAWIENIA
+        // =====================================================================
+        const CHANNELS = {
+            shorts: { id: 'UCrvqOwy_QFA9-P86T7Aid1A', limit: 8, isShort: true },  // @kgrusiak
+            mikro:  { id: 'UCgP6beBd8hWGGxiKmlwz3GA', limit: 6, isShort: false }  // @Mikrourażeni
+        };
+        const TIKTOK_USER = 'kgrusiak';
+        const CACHE_KEY = 'kgrusiak-yt-v1';
+        const FRESH_MS = 30 * 60 * 1000;
+        const CACHE_MAX_MS = 7 * 24 * 3600 * 1000;
+
+        const canEmbed = location.protocol === 'https:' || location.protocol === 'http:';
+        const $ = (id) => document.getElementById(id);
+        $('year').textContent = new Date().getFullYear();
+
+        function timeoutSignal(ms) {
+            if (window.AbortSignal && AbortSignal.timeout) return AbortSignal.timeout(ms);
+            const c = new AbortController(); setTimeout(() => c.abort(), ms); return c.signal;
+        }
+        const fetchText = (url, ms = 8000) => fetch(url, { signal: timeoutSignal(ms) })
+            .then(r => r.ok ? r.text() : '').then(t => t.trim()).catch(() => '');
+
+        // ---------- toast ----------
+        let toastTimer;
+        function showToast(text, isError = false) {
+            $('toast-text').textContent = text;
+            $('toast-icon').querySelector('use').setAttribute('href', isError ? '#i-circle-xmark' : '#i-circle-check');
+            $('toast').classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => $('toast').classList.remove('show'), 3000);
+        }
+
+        // ---------- udostępnianie ----------
+        $('share-btn').addEventListener('click', async () => {
+            const data = { title: document.title, text: 'Sprawdź sociale kgrusiak!', url: location.href };
+            if (navigator.share) { try { await navigator.share(data); } catch (e) {} return; }
+            try { await navigator.clipboard.writeText(location.href); showToast('Skopiowano link do schowka!'); }
+            catch (e) { showToast('Nie udało się skopiować linku', true); }
+        });
+
+        // ---------- kontakt (adres składany tutaj – ochrona przed botami) ----------
+        (function setupContact() {
+            const el = $('contact-email');
+            const email = `${el.dataset.user}@${el.dataset.domain}`;
+            el.textContent = email;
+            $('contact-mail').href = `mailto:${email}?subject=${encodeURIComponent('Współpraca – kgrusiak')}`;
+            $('contact-copy').addEventListener('click', async () => {
+                try { await navigator.clipboard.writeText(email); showToast('Skopiowano adres e-mail!'); }
+                catch (e) {
+                    const range = document.createRange(); range.selectNodeContents(el);
+                    const sel = getSelection(); sel.removeAllRanges(); sel.addRange(range);
+                    showToast('Adres zaznaczony – skopiuj go Ctrl+C', true);
+                }
+            });
+        })();
+
+        // =====================================================================
+        // GRAFIK TRENINGÓW
+        // treningi.json odświeża GitHub Actions (.github/workflows/grafik.yml) co 6 godzin
+        // =====================================================================
+        const WEEKDAYS = ['Niedz', 'Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob'];
+        const prettyName = (n) => n.toLowerCase().replace(/(^|\s)\S/g, c => c.toUpperCase()).replace(/\bMma\b/g, 'MMA');
+        const localISO = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        const toDate = (iso, hm) => { const [y, m, d] = iso.split('-').map(Number); const [h, mi] = hm.split(':').map(Number); return new Date(y, m - 1, d, h, mi); };
+
+        function untilText(date) {
+            const mins = Math.round((date - Date.now()) / 60000);
+            if (mins < 60) return `za ${mins} min`;
+            const h = Math.floor(mins / 60), m = mins % 60;
+            if (h < 24) return `za ${h} godz.${m ? ' ' + m + ' min' : ''}`;
+            const days = Math.round(h / 24);
+            return days === 1 ? 'jutro' : `za ${days} dni`;
+        }
+
+        function trainingFallback(text) {
+            $('next-when').textContent = 'Grafik';
+            $('next-name').textContent = text;
+            $('next-meta').textContent = 'Aktualne zajęcia znajdziesz w systemie zapisów klubu.';
+            $('week').innerHTML = '';
+        }
+
+        async function loadTrainings() {
+            let data;
+            try {
+                const r = await fetch(`treningi.json?v=${Date.now()}`, { cache: 'no-store' });
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                data = await r.json();
+            } catch (e) {
+                trainingFallback(location.protocol === 'file:'
+                    ? 'Grafik pojawi się po wrzuceniu strony na serwer.'
+                    : 'Nie udało się wczytać grafiku.');
+                return;
+            }
+
+            if (data.source) $('signup-btn').href = data.source;
+            $('personal-note').hidden = !data.personal;
+
+            const todayISO = localISO(new Date());
+            const days = (data.days || []).filter(d => d.date >= todayISO);
+            if (!days.length) { trainingFallback('Grafik jest chwilowo nieaktualny.'); return; }
+
+            // najbliższy trening, który jeszcze się nie zaczął
+            let next = null;
+            for (const d of days) {
+                for (const c of d.classes) {
+                    const start = toDate(d.date, c.start);
+                    if (!c.cancelled && start > new Date()) { next = { ...c, date: d.date, startAt: start }; break; }
+                }
+                if (next) break;
+            }
+
+            if (next) {
+                const wd = WEEKDAYS[next.startAt.getDay()];
+                $('next-when').textContent = `${next.date === todayISO ? 'Dziś' : wd} ${next.start}`;
+                $('next-name').textContent = prettyName(next.name);
+                $('next-meta').textContent = [untilText(next.startAt), `${next.start}–${next.end}`, next.room ? prettyName(next.room) : ''].filter(Boolean).join(' · ');
+            } else {
+                $('next-when').textContent = 'Brak zajęć';
+                $('next-name').textContent = 'W najbliższych dniach';
+                $('next-meta').textContent = data.personal ? 'Możesz umówić trening personalny.' : '';
+            }
+
+            const week = $('week');
+            week.innerHTML = '';
+            for (const d of days) {
+                const date = toDate(d.date, '12:00');
+                const li = document.createElement('li');
+                li.className = 'day' + (d.date === todayISO ? ' is-today' : '');
+                li.innerHTML = `<div><div class="day-name"></div><div class="day-date"></div></div><div class="day-classes"></div>`;
+                li.querySelector('.day-name').textContent = WEEKDAYS[date.getDay()];
+                li.querySelector('.day-date').textContent = d.date === todayISO ? 'Dziś' : date.toLocaleDateString('pl-PL', { day: 'numeric', month: 'short' });
+                const box = li.querySelector('.day-classes');
+                if (!d.classes.length) {
+                    box.innerHTML = '<span class="day-empty">Brak zajęć grupowych</span>';
+                }
+                for (const c of d.classes) {
+                    const slot = document.createElement('span');
+                    const isNext = next && next.date === d.date && next.start === c.start && next.name === c.name;
+                    slot.className = 'slot' + (c.cancelled ? ' is-cancelled' : '') + (isNext ? ' is-next' : '');
+                    slot.innerHTML = '<time></time><span></span>';
+                    slot.querySelector('time').textContent = `${c.start}–${c.end}`;
+                    slot.querySelector('span').textContent = prettyName(c.name) + (c.cancelled ? ' (odwołane)' : '');
+                    box.appendChild(slot);
+                }
+                week.appendChild(li);
+            }
+
+            if (data.updated) {
+                const u = new Date(data.updated);
+                $('train-foot').textContent = `Grafik pobierany automatycznie z systemu zapisów klubu · aktualizacja: ${u.toLocaleString('pl-PL', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}`;
+            }
+        }
+        loadTrainings();
+
+        // =====================================================================
+        // NAJNOWSZE Z YOUTUBE
+        // decapi (szybkie, ~1 s, bez dat) + kanał RSS przez allorigins (z datami, jeśli zdąży)
+        // =====================================================================
+        const isVideoId = (id) => /^[\w-]{11}$/.test(id || '');
+        const rtf = new Intl.RelativeTimeFormat('pl', { numeric: 'auto' });
+        function timeAgo(ts) {
+            if (!ts) return '';
+            const s = Math.round((ts - Date.now()) / 1000);
+            for (const [u, sec] of [['year', 31536000], ['month', 2592000], ['week', 604800], ['day', 86400], ['hour', 3600], ['minute', 60]]) {
+                if (Math.abs(s) >= sec) return rtf.format(Math.round(s / sec), u);
+            }
+            return 'przed chwilą';
+        }
+        const isFresh = (ts) => ts && Date.now() - ts < 3 * 86400 * 1000;
+
+        async function fromDecapi(channelId, limit) {
+            const reqs = Array.from({ length: limit }, (_, i) =>
+                fetchText(`https://decapi.me/youtube/latest_video?id=${channelId}&skip=${i}&format=${encodeURIComponent('{id} {title}')}`)
+                    .then(t => isVideoId(t.slice(0, 11)) && t[11] === ' ' ? { id: t.slice(0, 11), title: t.slice(12), date: null } : null));
+            const seen = new Set();
+            return (await Promise.all(reqs)).filter(v => v && !seen.has(v.id) && seen.add(v.id));
+        }
+
+        function parseFeed(xml) {
+            if (!xml || !xml.includes('<feed')) throw new Error('To nie jest kanał YouTube');
+            const doc = new DOMParser().parseFromString(xml, 'application/xml');
+            if (doc.getElementsByTagName('parsererror').length) throw new Error('Uszkodzony XML');
+            const text = (el, tag) => (el.getElementsByTagName(tag)[0] || {}).textContent || '';
+            return [...doc.getElementsByTagName('entry')]
+                .map(e => ({ id: text(e, 'yt:videoId'), title: text(e, 'title') || 'Bez tytułu', date: Date.parse(text(e, 'published')) || null }))
+                .filter(v => isVideoId(v.id));
+        }
+        function fromFeed(channelId) {
+            const enc = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
+            return Promise.any([
+                fetch('https://api.allorigins.win/raw?url=' + enc, { signal: timeoutSignal(6000) })
+                    .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); }).then(parseFeed),
+                fetch('https://api.allorigins.win/get?url=' + enc, { signal: timeoutSignal(6000) })
+                    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => parseFeed(d.contents))
+            ]);
+        }
+
+        function readCache() {
+            try { const c = JSON.parse(localStorage.getItem(CACHE_KEY)); if (c && c.data && Date.now() - c.t < CACHE_MAX_MS) return c; } catch (e) {}
+            return null;
+        }
+        function writeCache(data) {
+            try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), data })); } catch (e) {}
+        }
+
+        function createCard(item, isShort) {
+            const card = document.createElement('button');
+            card.type = 'button';
+            card.className = 'media-card';
+            card.setAttribute('aria-label', `Odtwórz: ${item.title}`);
+            card.innerHTML = isShort ? `
+                <span class="media-thumb aspect-short">
+                    <img loading="lazy" decoding="async" alt="">
+                    <span class="play-icon"><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg></span>
+                    ${isFresh(item.date) ? '<span class="new-badge">NOWE</span>' : ''}
+                    <span class="short-overlay"><span class="media-title"></span><span class="media-date"></span></span>
+                </span>` : `
+                <span class="media-thumb aspect-video">
+                    <img loading="lazy" decoding="async" alt="">
+                    <span class="play-icon"><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg></span>
+                    ${isFresh(item.date) ? '<span class="new-badge">NOWE</span>' : ''}
+                </span>
+                <span class="media-body"><span class="media-title"></span><span class="media-date"></span></span>`;
+            const img = card.querySelector('img');
+            if (isShort) {
+                img.onerror = () => { img.onerror = null; img.src = `https://i.ytimg.com/vi/${item.id}/hqdefault.jpg`; };
+                img.src = `https://i.ytimg.com/vi/${item.id}/oardefault.jpg`;
+            } else {
+                img.src = `https://i.ytimg.com/vi/${item.id}/mqdefault.jpg`;
+            }
+            card.querySelector('.media-title').textContent = item.title;
+            card.querySelector('.media-date').textContent = item.date ? timeAgo(item.date) : (isShort ? 'Short' : 'YouTube');
+            card.addEventListener('click', () => openVideo(item.id, isShort, card));
+            return card;
+        }
+
+        function renderSkeletons(grid, count, isShort) {
+            grid.innerHTML = '';
+            for (let i = 0; i < count; i++) {
+                const el = document.createElement('div');
+                el.className = 'media-card'; el.setAttribute('aria-hidden', 'true');
+                el.innerHTML = isShort ? '<div class="skeleton aspect-short"></div>'
+                    : '<div class="skeleton aspect-video"></div><div class="media-body"><div class="skeleton sk-line" style="width:90%"></div><div class="skeleton sk-line" style="width:55%"></div></div>';
+                grid.appendChild(el);
+            }
+        }
+
+        const CHANNEL_LINKS = {
+            shorts: ['https://www.youtube.com/@kgrusiak/shorts', 'Shorty na YouTube'],
+            mikro: ['https://www.youtube.com/@Mikroura%C5%BCeni/videos', 'Kanał Mikrourażeni']
+        };
+        function render(key, list) {
+            const grid = $('grid-' + key);
+            const ch = CHANNELS[key];
+            if (list && list.length) {
+                grid.innerHTML = '';
+                list.slice(0, ch.limit).forEach(item => grid.appendChild(createCard(item, ch.isShort)));
+                return;
+            }
+            const [url, label] = CHANNEL_LINKS[key];
+            grid.innerHTML = `<div class="panel-msg">
+                <svg class="ic" aria-hidden="true"><use href="#i-${list === null ? 'wifi' : 'film'}"/></svg>
+                <p></p><a class="btn btn-red" href="${url}" target="_blank" rel="noopener noreferrer"></a></div>`;
+            grid.querySelector('p').textContent = list === null ? 'Nie udało się wczytać filmów. Zobacz je bezpośrednio na YouTube.' : 'Nowe materiały już niedługo!';
+            grid.querySelector('a').textContent = label;
+        }
+
+        async function loadChannel(key, cached) {
+            const ch = CHANNELS[key];
+            let dated = false, result = null;
+            const jobs = [
+                fromDecapi(ch.id, ch.limit).then(list => {
+                    if (!dated && list.length) { result = list; render(key, list); }
+                }),
+                fromFeed(ch.id).then(list => { dated = true; result = list; render(key, list); }).catch(() => {})
+            ];
+            await Promise.allSettled(jobs);
+            if (result === null && !(cached && cached[key])) render(key, null);
+            return result;
+        }
+
+        async function loadLatest() {
+            const cache = readCache();
+            const cached = cache ? cache.data : null;
+            for (const key of Object.keys(CHANNELS)) {
+                if (cached && cached[key]) render(key, cached[key]);
+                else renderSkeletons($('grid-' + key), CHANNELS[key].isShort ? 4 : 2, CHANNELS[key].isShort);
+            }
+            if (cache && Date.now() - cache.t < FRESH_MS) return;
+
+            const keys = Object.keys(CHANNELS);
+            const results = await Promise.all(keys.map(k => loadChannel(k, cached)));
+            const data = {};
+            keys.forEach((k, i) => { data[k] = results[i] || (cached && cached[k]) || null; });
+            if (keys.every(k => data[k] !== null)) writeCache(data);
+        }
+        loadLatest();
+
+        // ---------- TikTok: oficjalny widżet (ładowany po kliknięciu zakładki) ----------
+        let tiktokLoaded = false;
+        function loadTikTok() {
+            if (tiktokLoaded) return;
+            tiktokLoaded = true;
+            $('tiktok-embed-wrap').innerHTML = `
+                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@${TIKTOK_USER}" data-unique-id="${TIKTOK_USER}"
+                    data-embed-type="creator" style="max-width: 780px; min-width: 288px; width: 100%; margin: 0;">
+                    <section style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:40px 0;color:var(--muted)">
+                        <a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@${TIKTOK_USER}?refer=creator_embed" style="font-weight:800;color:#fff">@${TIKTOK_USER}</a>
+                    </section>
+                </blockquote>`;
+            const s = document.createElement('script');
+            s.src = 'https://www.tiktok.com/embed.js'; s.async = true;
+            document.body.appendChild(s);
+        }
+
+        // ---------- zakładki ----------
+        const tabs = document.querySelectorAll('[role="tab"]');
+        const moreLinks = {
+            shorts: ['https://www.youtube.com/@kgrusiak/shorts', 'Wszystkie shorty na YouTube'],
+            mikro: ['https://www.youtube.com/@Mikroura%C5%BCeni/videos', 'Kanał Mikrourażeni'],
+            tiktok: [`https://www.tiktok.com/@${TIKTOK_USER}`, 'Cały profil na TikToku']
+        };
+        function selectTab(name, focus = false) {
+            tabs.forEach(btn => {
+                const active = btn.dataset.tab === name;
+                btn.setAttribute('aria-selected', active);
+                btn.tabIndex = active ? 0 : -1;
+                $(btn.getAttribute('aria-controls')).hidden = !active;
+                if (active && focus) btn.focus();
+            });
+            $('latest-more').href = moreLinks[name][0];
+            $('latest-more-text').textContent = moreLinks[name][1];
+            if (name === 'tiktok') loadTikTok();
+        }
+        tabs.forEach((btn, i) => {
+            btn.addEventListener('click', () => selectTab(btn.dataset.tab));
+            btn.addEventListener('keydown', (e) => {
+                if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+                e.preventDefault();
+                selectTab(tabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length].dataset.tab, true);
+            });
+        });
+
+        // ---------- odtwarzacz ----------
+        // Plik otwarty z dysku (file://) nie ma adresu, a YouTube go wymaga ("Błąd 153") – wtedy otwieramy YouTube.
+        const modal = $('video-modal');
+        let lastFocused = null;
+        function openVideo(id, isShort, trigger) {
+            const url = isShort ? `https://www.youtube.com/shorts/${id}` : `https://www.youtube.com/watch?v=${id}`;
+            if (!canEmbed) { window.open(url, '_blank', 'noopener'); return; }
+            lastFocused = trigger || document.activeElement;
+            $('modal-frame').classList.toggle('is-short', isShort);
+            const p = new URLSearchParams({ autoplay: '1', rel: '0', playsinline: '1', origin: location.origin, widget_referrer: location.href });
+            $('modal-frame').innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?${p}" title="Odtwarzacz YouTube"
+                referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen; web-share" allowfullscreen></iframe>`;
+            $('modal-yt-link').href = url;
+            modal.classList.add('show');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            modal.querySelector('.modal-close').focus();
+        }
+        function closeVideo() {
+            if (!modal.classList.contains('show')) return;
+            modal.classList.remove('show');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            setTimeout(() => { if (!modal.classList.contains('show')) $('modal-frame').innerHTML = ''; }, 300);
+            if (lastFocused) lastFocused.focus();
+        }
+        modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeVideo));
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeVideo(); });
+    </script>
+</body>
+</html>
